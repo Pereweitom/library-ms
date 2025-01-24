@@ -104,7 +104,7 @@
 require '../config/database.php';
 require '../includes/session.php';
 checkLogin();
-checkRole('admin');
+checkRole('librarian');
 
 // Fetch all books
 $sql = "SELECT books.book_id, books.title, books.author, books.isbn, books.copies_available, books.published_year, genres.genre_name 
@@ -120,8 +120,8 @@ $result = $conn->query($sql);
         <h2 class="logo">Tomere<span>Lib</span>.</h2>
         <nav class="menu">
             <a href="dashboard.php">Dashboard</a>
-            <a href="manage_users.php">Manage Users</a>
             <a href="manage_books.php" class="active">Manage Books</a>
+            <a href="borrow_requests.php">Borrow Requests</a>
         </nav>
         <div class="sidebar-footer">
             <a href="../auth/logout.php"><img src="../assets/images/logout_icon.png" alt="logout" class="logout-icon"> <span>Logout</span></a>
@@ -157,7 +157,12 @@ $result = $conn->query($sql);
             <div class="manage-books-section">
                 <h3>Manage Books</h3>
                 <a href="add_book.php" class="add-book-btn">Add New Book</a>
-                
+                <!-- <div class="search-books">
+                 <form action="search_books.php" method="GET">
+                    <input type="text" name="search" placeholder="Search Books">
+                    <button type="submit">Search</button>
+                </form> 
+            </div> -->
                 <div class="table-wrapper">
 
                 </div>

@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.dashboard-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #468fd2;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h2 > span {
+  color: #e74c3c;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu a.active {
+  background-color: white;
+  color: #468fd2;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.sidebar-footer a {
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+  display: block;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+.header .profile, .sidebar-footer a{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .profile img, .logout-icon {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.activities {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.chart {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.details .top-products,
+.details .schedule {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details h3 {
+  margin-bottom: 15px;
+}
+
+.details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.details ul li {
+  margin: 10px 0;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #2980b9;
+}
+
+/* Table Styling */
+
+.add-user-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #468fd2;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.add-user-btn:hover {
+  background-color: #3169a3;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.styled-table thead {
+  background-color: #468fd2;
+  color: white;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table th {
+  font-weight: bold;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.action-link {
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.edit-link {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-link:hover {
+  background-color: #218838;
+}
+
+.delete-link {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-link:hover {
+  background-color: #c82333;
+}
