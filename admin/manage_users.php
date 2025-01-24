@@ -1,10 +1,10 @@
 <style>
-
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
+
     /* Table Section */
     .manage-users-section {
         background-color: #fff;
@@ -90,13 +90,13 @@
     }
 
     footer {
-    text-align: center;
-    color: white;
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 5px;
-    background-color: #2980B9;
-}
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 5px;
+        background-color: #2980B9;
+    }
 </style>
 
 
@@ -124,74 +124,53 @@ $result = $conn->query($sql);
             <a href="manage_books.php">Manage Books</a>
         </nav>
         <div class="sidebar-footer">
-            
+
             <a href="../auth/logout.php"><img src="../assets/images/logout_icon.png" alt="logout" class="logout-icon"> <span>Logout</span></a>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-   
-
-        <!-- Stats Cards -->
-        <section class="stats-cards">
-            <div class="card">
-                <h3>Total Revenue</h3>
-                <p>$2,123,450</p>
-            </div>
-            <div class="card">
-                <h3>Total Transactions</h3>
-                <p>1,520</p>
-            </div>
-            <div class="card">
-                <h3>Sales</h3>
-                <p>9,721</p>
-            </div>
-            <div class="card">
-                <h3>Users</h3>
-                <p>892</p>
-            </div>
-        </section>
 
         <!-- Activities and Details -->
-        <section >
-        <div class="manage-users-section">
-            <h3>Manage Users</h3>
-            <a href="add_user.php" class="add-user-btn">Add New User</a>
+        <section>
+            <div class="manage-users-section">
+                <h3>Manage Users</h3>
+                <a href="add_user.php" class="add-user-btn">Add New User</a>
 
-            <div class="table-wrapper">
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Created At</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($user = $result->fetch_assoc()) : ?>
+                <div class="table-wrapper">
+                    <table class="styled-table">
+                        <thead>
                             <tr>
-                                <td><?= $user['username'] ?></td>
-                                <td><?= $user['full_name'] ?></td>
-                                <td><?= $user['email'] ?></td>
-                                <td><?= ucfirst($user['role']) ?></td>
-                                <td><?= $user['created_at'] ?></td>
-                                <td>
-                                    <a href="edit_user.php?user_id=<?= $user['user_id'] ?>" class="action-link edit-link">Edit</a>
-                                    <a href="delete_user.php?user_id=<?= $user['user_id'] ?>" class="action-link delete-link" onclick="return confirm('Are you sure?')">Delete</a>
-                                </td>
+                                <th>Username</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Created At</th>
+                                <th>Actions</th>
                             </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php while ($user = $result->fetch_assoc()) : ?>
+                                <tr>
+                                    <td><?= $user['username'] ?></td>
+                                    <td><?= $user['full_name'] ?></td>
+                                    <td><?= $user['email'] ?></td>
+                                    <td><?= ucfirst($user['role']) ?></td>
+                                    <td><?= $user['created_at'] ?></td>
+                                    <td>
+                                        <a href="edit_user.php?user_id=<?= $user['user_id'] ?>" class="action-link edit-link">Edit</a>
+                                        <a href="delete_user.php?user_id=<?= $user['user_id'] ?>" class="action-link delete-link" onclick="return confirm('Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <footer>
-            <p style="text-align: center;">All right reserved, &copy; Pereweitom</p>
-        </footer>
+            <footer>
+                <p style="text-align: center;">All right reserved, &copy; Pereweitom</p>
+            </footer>
         </section>
     </main>
 </div>

@@ -34,24 +34,30 @@ checkRole('librarian'); // Ensure only Librarians can access this page
             </div>
         </header>
 
+        <?php
+
+        // Query to get total users
+        $user_query = "SELECT COUNT(*) AS total_users FROM users";
+        $user_result = $conn->query($user_query);
+        $total_users = $user_result->fetch_assoc()['total_users'];
+
+        // Query to get total books
+        $book_query = "SELECT COUNT(*) AS total_books FROM books";
+        $book_result = $conn->query($book_query);
+        $total_books = $book_result->fetch_assoc()['total_books'];
+
+        ?>
         <!-- Stats Cards -->
         <section class="stats-cards">
             <div class="card">
                 <h3>Total Users</h3>
-                <p>$2,123,450</p>
+                <p><?= $total_users ?></p>
             </div>
             <div class="card">
                 <h3>Total Number of books</h3>
-                <p>1,520</p>
+                <p><?= $total_books ?></p>
             </div>
-            <div class="card">
-                <h3>Sales</h3>
-                <p>9,721</p>
-            </div>
-            <div class="card">
-                <h3>Users</h3>
-                <p>892</p>
-            </div>
+           
         </section>
 
         <!-- Activities and Details -->

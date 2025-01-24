@@ -108,6 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </aside>
 
     <main class="main-content">
+    <header class="header">
+            <h1> Dashboard - Welcome Librarian, <?= ucfirst($_SESSION['username']); ?></h1>
+            <div class="profile">
+                <img src="../assets/images/user_avatar.jpg" alt="User">
+                <span><?= ucfirst($_SESSION['username']); ?></span>
+            </div>
+        </header>
         <section>
             <form method="POST">
                 <h2>Edit User</h2>

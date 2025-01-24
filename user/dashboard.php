@@ -32,31 +32,76 @@ checkRole('user'); // Ensure only users can access this page
             </div>
         </header>
 
+        <?php
+
+        // Query to get total users
+        $user_query = "SELECT COUNT(*) AS total_users FROM users";
+        $user_result = $conn->query($user_query);
+        $total_users = $user_result->fetch_assoc()['total_users'];
+
+        // Query to get total books
+        $book_query = "SELECT COUNT(*) AS total_books FROM books";
+        $book_result = $conn->query($book_query);
+        $total_books = $book_result->fetch_assoc()['total_books'];
+
+        ?>
         <!-- Stats Cards -->
         <section class="stats-cards">
             <div class="card">
                 <h3>Total Users</h3>
-                <p>$2,123,450</p>
+                <p><?= $total_users ?></p>
             </div>
             <div class="card">
                 <h3>Total Number of books</h3>
-                <p>1,520</p>
+                <p><?= $total_books ?></p>
             </div>
-            <div class="card">
-                <h3>Sales</h3>
-                <p>9,721</p>
-            </div>
-            <div class="card">
-                <h3>Users</h3>
-                <p>892</p>
-            </div>
+
         </section>
 
         <!-- Activities and Details -->
-        <section class="activities">
-            <div class="chart">
+                <!-- Activities and Details -->
+                <section class="activities">
+        <div class="chart">
                 <!-- <h3>User</h3> -->
-                <canvas id="myChart"></canvas>            
+                <h3>Books</h3>
+                 <?php 
+                    $sql = "SELECT books.book_id, books.title, books.author, books.isbn, books.copies_available, books.published_year, genres.genre_name 
+                    FROM books 
+                    JOIN genres ON books.genre_id = genres.genre_id";
+                    $result = $conn->query($sql);
+                 ?>
+
+
+                <div class="manage-books-section">
+                    <div class="table-wrapper">
+                        <table class="styled-table">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Genre</th>
+                                <th>Copies Available</th>
+                                <th>Published Year</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($book = $result->fetch_assoc()) : ?>
+                                    <tr>
+                                        <td><?= $book['title'] ?></td>
+                                        <td><?= $book['author'] ?></td>
+                                        <td><?= $book['isbn'] ?></td>
+                                        <td><?= $book['genre_name'] ?></td>
+                                        <td><?= $book['copies_available'] ?></td>
+                                        <td><?= $book['published_year'] ?></td>
+
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="details">
                 <div class="top-products">

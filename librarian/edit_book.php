@@ -41,7 +41,8 @@
         margin-bottom: 5px;
     }
 
-    input, select {
+    input,
+    select {
         width: 100%;
         padding: 10px;
         font-size: 14px;
@@ -61,18 +62,24 @@
         border-radius: 5px;
         cursor: pointer;
     }
-
 </style>
-
 
 <?php
 require '../config/database.php';
 require '../includes/session.php';
-checkLogin();
-checkRole('admin');
 
-// Fetch genres
-$genres = $conn->query("SELECT * FROM genres");
+checkLogin();
+checkRole('librarian');
+
+$book_id = (int)$_GET['book_id'];
+$query = "SELECT * FROM books WHERE book_id = $book_id";
+$result = $conn->query($query);
+$book = $result->fetch_assoc();
+
+//  for genre
+// $genre_id = (int)$_GET['genre_id'];
+// $genres = $conn->query("SELECT * FROM genres WHERE genre_id = $genre_id");
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $conn->real_escape_string($_POST['title']);
@@ -82,10 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $copies = (int)$_POST['copies_available'];
     $published_year = (int)$_POST['published_year'];
 
-    $sql = "INSERT INTO books (title, author, genre_id, isbn, copies_available, published_year)
-              VALUES ('$title', '$author', '$genre_id', '$isbn', '$copies', '$published_year')";
+    $query = "UPDATE books SET title = '$title', author = '$author', genre_id = '$genre_id', isbn = '$isbn', copies_available = '$copies', published_year = '$published_year' WHERE book_id = $book_id" ;
 
-    if ($conn->query($sql)) {
+    if ($conn->query($query)) {
         header('Location: manage_books.php');
         exit();
     } else {
@@ -99,9 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <aside class="sidebar">
         <h2 class="logo">Tomere<span>Lib</span>.</h2>
         <nav class="menu">
-            <a href="dashboard.php">Dashboard</a>
-            <a href="manage_users.php">Manage Users</a>
-            <a href="manage_books.php" class="active">Manage Books</a>
+            <a href="dashboard.php" class="active">Dashboard</a>
+            <a href="manage_books.php">Manage Books</a>
+            <a href="borrow_requests.php">Borrow Requests</a>
         </nav>
         <div class="sidebar-footer">
             <a href="../auth/logout.php"><img src="../assets/images/logout_icon.png" alt="logout" class="logout-icon"> <span>Logout</span></a>
@@ -109,43 +115,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </aside>
 
     <main class="main-content">
-    <header class="header">
-            <h1> Dashboard - Welcome Librarian, <?= ucfirst($_SESSION['username']); ?></h1>
-            <div class="profile">
-                <img src="../assets/images/user_avatar.jpg" alt="User">
-                <span><?= ucfirst($_SESSION['username']); ?></span>
-            </div>
-        </header>
-    <section>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <h2>Add books</h2>
-        <label>Title:</label>
-        <input type="text" name="title" required>
-        <br>
-        <label>Author:</label>
-        <input type="text" name="author" required>
-        <br>
-        <label>Genre:</label>
-        <select name="genre_id" required>
-            <?php while ($genre = $genres->fetch_assoc()) : ?>
-                <option value="<?= $genre['genre_id'] ?>"><?= $genre['genre_name'] ?></option>
-            <?php endwhile; ?>
-        </select>
-        <br>
-        <label>ISBN:</label>
-        <input type="text" name="isbn" required>
-        <br>
-        <label>Copies Available:</label>
-        <input type="number" name="copies_available" required>
-        <br>
-        <label>Published Year:</label>
-        <input type="number" name="published_year" required>
-        <br>
-        <button type="submit">Add Book</button>
-    </form>
-    </section>
-    
+        <section>
+            <form method="POST">
+                <h2>Edit Book</h2>
+                <label>Title:</label>
+                <input type="text" name="title" value="<?= $book['title'] ?>"  required>
+                <br>
+                <label>Author:</label>
+                <input type="text" name="author" value="<?= $book['author'] ?>" required>
+                
+                <br>
+                <label>ISBN:</label>
+                <input type="text" name="isbn" value="<?= $book['isbn'] ?>" required>
+                <br>
+                <label>Copies Available:</label>
+                <input type="number" name="copies_available" value="<?= $book['copies_available'] ?>" required>
+                <br>
+                <label>Published Year:</label>
+                <input type="number" name="published_year" value="<?= $book['published_year'] ?>" required>
+                <br>
+                <button type="submit">Update Book</button>
+            </form>
+
+        </section>
+
     </main>
-    
+
 </div>
 <script src="../assets/js/script.js"></script>

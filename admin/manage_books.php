@@ -130,28 +130,6 @@ $result = $conn->query($sql);
 
     <!-- Main Content -->
     <main class="main-content">
-
-
-        <!-- Stats Cards -->
-        <section class="stats-cards">
-            <div class="card">
-                <h3>Total Revenue</h3>
-                <p>$2,123,450</p>
-            </div>
-            <div class="card">
-                <h3>Total Transactions</h3>
-                <p>1,520</p>
-            </div>
-            <div class="card">
-                <h3>Sales</h3>
-                <p>9,721</p>
-            </div>
-            <div class="card">
-                <h3>Users</h3>
-                <p>892</p>
-            </div>
-        </section>
-
         <!-- Activities and Details -->
         <section>
             <div class="manage-books-section">
