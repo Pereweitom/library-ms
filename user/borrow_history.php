@@ -43,7 +43,7 @@ h3 {
 }
 
 .book-table thead tr {
-    background-color: #2c3e50;
+    background-color: #3498db;;
     color: #ffffff;
     text-transform: uppercase;
 }
@@ -110,9 +110,9 @@ $result = $conn->query($sql);
     <aside class="sidebar">
         <h2 class="logo">Tomere<span>Lib</span>.</h2>
         <nav class="menu">
-            <a href="#" class="active">Dashboard</a>
+            <a href="dashboard.php">Dashboard</a>
             <a href="browse_books.php">Browse Books</a>
-            <a href="borrow_history.php">Borrow History</a>
+            <a href="borrow_history.php" class="active">Borrow History</a>
         </nav>
         <div class="sidebar-footer">
             <a href="../auth/logout.php"><img src="../assets/images/logout_icon.png" alt="logout" class="logout-icon"> <span>Logout</span></a>
@@ -122,56 +122,43 @@ $result = $conn->query($sql);
     <main class="main-content">
         <section>
 
-            <!-- <h3>Your Borrowing History</h3>
+            <h3>Your Borrowing History</h3>
+          
             <?php
-            if ($result->num_rows > 0) {
-                while ($request = $result->fetch_assoc()) {
-                    echo "<div>
-                <p><strong>{$request['title']}</strong> by {$request['author']}</p>
-                <p>Type: {$request['request_type']}, Status: {$request['status']}</p>
-                <p>Requested on: {$request['request_date']}</p>
-              </div>";
-                }
-            } else {
-                echo "<p>No borrowing history found.</p>";
-            }
-            ?> -->
-            
-        </section>
-
-    </main>
-
-</div>
-<script src="../assets/js/script.js"></script>
-
-<?php
             echo "<div class='book-table-wrapper'>";
             echo "<table class='book-table'>";
             echo "<thead>
         <tr>
             <th>Title</th>
             <th>Author</th>
-            <th>Genre</th>
-            <th>Request</th>
+            <th>Request type</th>
+            <th>Request Status</th>
+            <th>Request date</th>      
         </tr>
       </thead>";
             echo "<tbody>";
-
-            while ($book = $result->fetch_assoc()) {
-                echo "<tr>
-            <td>{$book['title']}</td>
-            <td>{$book['author']}</td>
-            <td>{$book['genre']}</td>
-            <td>
-                <form method='POST' class='request-form'>
-                    <input type='hidden' name='book_id' value='{$book['book_id']}'>
-                    <button type='submit' class='btn-request'>Request</button>
-                </form>
-            </td>
-          </tr>";
+            if($result->num_rows > 0){
+                while ($request = $result->fetch_assoc()) {
+                    echo "<tr>
+                <td>{$request['title']}</td>
+                <td>{$request['author']}</td>
+                <td>{$request['request_type']}</td>
+                <td>{$request['status']}</td>
+                <td>{$request['request_date']}</td>
+              </tr>";
+                }
+    
+                echo "</tbody>";
+                echo "</table>";
+                echo "</div>";
+            }else {
+                echo "<p>No borrowing history found.</p>";
             }
-
-            echo "</tbody>";
-            echo "</table>";
-            echo "</div>";
+           
             ?>
+        </section>
+
+    </main>
+
+</div>
+<script src="../assets/js/script.js"></script>

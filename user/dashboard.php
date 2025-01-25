@@ -1,3 +1,40 @@
+
+<style>
+    .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.calendar h3 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+#calendar {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6rem;
+    padding: 10px;
+}
+</style>
+
+
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -59,32 +96,32 @@ checkRole('user'); // Ensure only users can access this page
         </section>
 
         <!-- Activities and Details -->
-                <!-- Activities and Details -->
-                <section class="activities">
-        <div class="chart">
+        <!-- Activities and Details -->
+        <section class="activities">
+            <div class="chart">
                 <!-- <h3>User</h3> -->
                 <h3>Books</h3>
-                 <?php 
-                    $sql = "SELECT books.book_id, books.title, books.author, books.isbn, books.copies_available, books.published_year, genres.genre_name 
+                <?php
+                $sql = "SELECT books.book_id, books.title, books.author, books.isbn, books.copies_available, books.published_year, genres.genre_name 
                     FROM books 
                     JOIN genres ON books.genre_id = genres.genre_id";
-                    $result = $conn->query($sql);
-                 ?>
+                $result = $conn->query($sql);
+                ?>
 
 
                 <div class="manage-books-section">
                     <div class="table-wrapper">
                         <table class="styled-table">
                             <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>ISBN</th>
-                                <th>Genre</th>
-                                <th>Copies Available</th>
-                                <th>Published Year</th>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>ISBN</th>
+                                    <th>Genre</th>
+                                    <th>Copies Available</th>
+                                    <th>Published Year</th>
 
-                            </tr>
+                                </tr>
                             </thead>
                             <tbody>
                                 <?php while ($book = $result->fetch_assoc()) : ?>
@@ -104,22 +141,12 @@ checkRole('user'); // Ensure only users can access this page
                 </div>
             </div>
             <div class="details">
-                <div class="top-products">
-                    <h3>Top Products</h3>
-                    <ul>
-                        <li>Basic Tees</li>
-                        <li>Custom Short Pants</li>
-                        <li>Super Hoodies</li>
-                    </ul>
-                </div>
-                <div class="schedule">
-                    <h3>Today's Schedule</h3>
-                    <ul>
-                        <li>Check promotions - 9:00 AM</li>
-                        <li>Team Meeting - 12:00 PM</li>
-                    </ul>
+                <div class="calendar">
+                    <h3>Calendar</h3>
+                    <div id="calendar"></div>
                 </div>
             </div>
+
         </section>
 
         <footer>
@@ -129,4 +156,29 @@ checkRole('user'); // Ensure only users can access this page
 
 </div>
 <script src="../assets/js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const calendarEl = document.getElementById("calendar");
+  const now = new Date();
+  const month = now.toLocaleString("default", { month: "long" });
+  const year = now.getFullYear();
+
+  const daysInMonth = new Date(year, now.getMonth() + 1, 0).getDate();
+  const firstDay = new Date(year, now.getMonth(), 1).getDay();
+
+  let calendarHTML = `<div><strong>${month} ${year}</strong></div><table>`;
+  calendarHTML += "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
+
+  for (let i = 0; i < firstDay; i++) {
+      calendarHTML += "<td></td>";
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+      calendarHTML += `<td>${day}</td>`;
+      if ((day + firstDay) % 7 === 0) calendarHTML += "</tr><tr>";
+  }
+
+  calendarHTML += "</tr></table>";
+  calendarEl.innerHTML = calendarHTML;
+});
+</script>

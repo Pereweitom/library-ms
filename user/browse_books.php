@@ -1,5 +1,4 @@
 <style>
-
     h3 {
         margin-bottom: 10px;
         color: #2c3e50;
@@ -24,46 +23,32 @@
         border-radius: 5px;
     }
 
-    /* Book List */
-    .book-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: space-around;
+    /* Styled Table */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .styled-table th, .styled-table td {
         padding: 10px;
-    }
-
-    .book-card {
-        background-color: #ffffff;
+        text-align: left;
         border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        width: 300px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
     }
 
-    .book-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    .styled-table th {
+        background-color: #3498db;
+        color: white;
     }
 
-    /* Book Information */
-    .book-card h3 {
-        font-size: 18px;
-        margin: 0;
-        color: #34495e;
-    }
-
-    .book-card p {
-        margin: 5px 0;
-        color: #7f8c8d;
+    .styled-table tr:nth-child(even) {
+        background-color: #f9f9f9;
     }
 
     /* Button Styles */
     .btn-request {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 8px 16px;
         background-color: #3498db;
         color: #fff;
         border: none;
@@ -100,14 +85,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $result = $conn->query("SELECT * FROM books WHERE status = 'available'");
 ?>
+
 <link rel="stylesheet" href="../assets/css/dashboard.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
         <h2 class="logo">Tomere<span>Lib</span>.</h2>
         <nav class="menu">
-            <a href="#" class="active">Dashboard</a>
-            <a href="browse_books.php">Browse Books</a>
+            <a href="dashboard.php">Dashboard</a>
+            <a href="browse_books.php" class="active">Browse Books</a>
             <a href="borrow_history.php">Borrow History</a>
         </nav>
         <div class="sidebar-footer">
@@ -115,26 +101,34 @@ $result = $conn->query("SELECT * FROM books WHERE status = 'available'");
         </div>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
         <section>
-
-            <?php
-            echo "<div class='book-list'>";
-            while ($book = $result->fetch_assoc()) {
-                echo "<div class='book-card'>
-            <h3>{$book['title']}</h3>
-            <p><strong>Author:</strong> {$book['author']}</p>
-            <form method='POST'>
-                <input type='hidden' name='book_id' value='{$book['book_id']}'>
-                <button type='submit' class='btn-request'>Request to Borrow</button>
-            </form>
-          </div>";
-            }
-            echo "</div>";
-            ?>
+            <h3>Available Books</h3>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($book = $result->fetch_assoc()) : ?>
+                        <tr>
+                            <td><?= htmlspecialchars($book['title']) ?></td>
+                            <td><?= htmlspecialchars($book['author']) ?></td>
+                            <td>
+                                <form method="POST">
+                                    <input type="hidden" name="book_id" value="<?= $book['book_id'] ?>">
+                                    <button type="submit" class="btn-request">Request to Borrow</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
         </section>
-
     </main>
-
 </div>
 <script src="../assets/js/script.js"></script>

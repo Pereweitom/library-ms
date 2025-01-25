@@ -1,3 +1,37 @@
+<style>
+    .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.calendar h3 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+#calendar {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6rem;
+    padding: 10px;
+}
+</style>
 <link rel="stylesheet" href="../assets/css/dashboard.css">
 
 <?php
@@ -103,20 +137,9 @@ checkRole('admin'); // Ensure only admins can access this page
                 </div>
             </div>
             <div class="details">
-                <div class="top-products">
-                    <h3>Top Products</h3>
-                    <ul>
-                        <li>Basic Tees</li>
-                        <li>Custom Short Pants</li>
-                        <li>Super Hoodies</li>
-                    </ul>
-                </div>
-                <div class="schedule">
-                    <h3>Today's Schedule</h3>
-                    <ul>
-                        <li>Check promotions - 9:00 AM</li>
-                        <li>Team Meeting - 12:00 PM</li>
-                    </ul>
+                <div class="calendar">
+                    <h3>Calendar</h3>
+                    <div id="calendar"></div>
                 </div>
             </div>
         </section>
@@ -128,4 +151,29 @@ checkRole('admin'); // Ensure only admins can access this page
 
 </div>
 <script src="../assets/js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const calendarEl = document.getElementById("calendar");
+  const now = new Date();
+  const month = now.toLocaleString("default", { month: "long" });
+  const year = now.getFullYear();
+
+  const daysInMonth = new Date(year, now.getMonth() + 1, 0).getDate();
+  const firstDay = new Date(year, now.getMonth(), 1).getDay();
+
+  let calendarHTML = `<div><strong>${month} ${year}</strong></div><table>`;
+  calendarHTML += "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
+
+  for (let i = 0; i < firstDay; i++) {
+      calendarHTML += "<td></td>";
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+      calendarHTML += `<td>${day}</td>`;
+      if ((day + firstDay) % 7 === 0) calendarHTML += "</tr><tr>";
+  }
+
+  calendarHTML += "</tr></table>";
+  calendarEl.innerHTML = calendarHTML;
+});
+</script>
