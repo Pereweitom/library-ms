@@ -1,110 +1,3 @@
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    section {
-        display: flex;
-        width: 90%;
-        align-items: center;
-        margin-top: 20px;
-        justify-content: space-around;
-
-    }
-
-    section>* {
-        flex-basis: 1;
-    }
-
-    section>div {
-        border-left: 4px solid white;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        padding: 10px;
-        color: white;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    form {
-        width: 40%;
-        padding: 20px 20px;
-        background-color: white;
-        border-radius: 8px;
-
-    }
-
-    form>h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 20px;
-
-    }
-
-    input, select {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 15px;
-
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .password-toggle {
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
-
-    .password-toggle > .toggle-btn {
-        position: absolute;
-        right: 10px;
-        top: 40%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: #007bff;
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    .password-toggle .toggle-btn:hover {
-        text-decoration: underline;
-    }
-    .signup-link {
-        text-align: center;
-        margin-top: 10px;
-        font-size: 14px;
-    }
-
-    .signup-link a {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .signup-link a:hover {
-        text-decoration: underline;
-    }
-
-</style>
-
-
-
-
 <?php
 require '../config/database.php';
 include '../includes/header.php';
@@ -120,19 +13,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               VALUES ('$username', '$password', '$full_name', '$email', '$role')";
 
     if ($conn->query($sql)) {
-        echo "Registration successful! <a href='login.php'>Login here</a>";
+        // echo "Registration successful! <a href='login.php'>Login here</a>";
     } else {
-        echo "Error: " . $conn->error;
+        // echo "Error: " . $conn->error;
     }
 }
 ?>
+<link rel="stylesheet" href="../assets/css/auth.css">
 
-<section>
+<section class="register_section">
     <div>
         <h1>Welcome to TomereLib</h1>
         <p>Where knowledge meets opportunity</p>
     </div>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="register_form">
         <h2>Registeration</h2>
         <input type="text" name="username" placeholder="Enter your Username" required>
         <div class="password-toggle">
