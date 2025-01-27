@@ -6,7 +6,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #2980B9;
+    background-image: url('../images/lib4_img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(41, 128, 185, 0.6);
+    background-blend-mode: overlay;
 }
 
 header {
@@ -39,6 +43,14 @@ li>a {
     text-decoration: none;
     color: white;
 
+}
+
+li > a:hover {
+    background-color: #E74C3C;
+}
+
+.reg:hover {
+    background-color: #2980B9;
 }
 
 main {

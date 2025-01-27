@@ -14,7 +14,7 @@
         <nav>
             <ul>
                 <li><a href="./auth/login.php">Login</a></li>
-                <li><a href="./auth/register.php">Register</a></li>
+                <li><a href="./auth/register.php" class="reg">Register</a></li>
             </ul>
         </nav>
     </header>
