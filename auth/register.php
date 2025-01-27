@@ -19,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<link rel="stylesheet" href="../assets/css/auth.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/form.css">
 
 <section class="register_section">
     <div>
-        <h1>Welcome to TomereLib</h1>
+        <h1>Welcome to Tomere<span>Lib</span></h1>
         <p>Where knowledge meets opportunity</p>
     </div>
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="register_form">

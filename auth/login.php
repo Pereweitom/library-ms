@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/auth.css">
+<link rel="stylesheet" href="../assets/css/form.css">
 <section>
     <div>
         <h1>Welcome to Tomere<span>Lib</span></h1>

@@ -1,39 +1,3 @@
-<style>
-    .details {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.calendar {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  width: 90%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.calendar h3 {
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
-
-#calendar {
-    font-family: 'Courier New', Courier, monospace;
-    line-height: 1.6rem;
-    padding: 10px;
-}
-</style>
-<link rel="stylesheet" href="../assets/css/dashboard.css">
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -41,7 +5,7 @@ require '../includes/session.php';
 checkLogin(); // Ensure the user is logged in
 checkRole('admin'); // Ensure only admins can access this page
 ?>
-
+<link rel="stylesheet" href="../assets/css/dashboard.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">

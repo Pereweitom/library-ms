@@ -1,92 +1,3 @@
-<style>
-    /* General Styles */
-
-h3 {
-    margin-bottom: 10px;
-    color: #2c3e50;
-}
-
-/* Success and Error Messages */
-.success {
-    color: #27ae60;
-    background-color: #ecf9f1;
-    border: 1px solid #27ae60;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
-.error {
-    color: #e74c3c;
-    background-color: #fdecea;
-    border: 1px solid #e74c3c;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
-/* Table Wrapper */
-.book-table-wrapper {
-    margin-top: 20px;
-    overflow-x: auto;
-}
-
-/* Book Table */
-.book-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: left;
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.book-table thead tr {
-    background-color: #3498db;;
-    color: #ffffff;
-    text-transform: uppercase;
-}
-
-.book-table th,
-.book-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-}
-
-.book-table tbody tr {
-    transition: background-color 0.3s;
-}
-
-.book-table tbody tr:hover {
-    background-color: #f2f2f2;
-}
-
-/* Button Styles */
-.btn-request {
-    padding: 8px 12px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.2s;
-}
-
-.btn-request:hover {
-    background-color: #2980b9;
-}
-
-.request-form {
-    display: inline-block;
-    margin: 0;
-}
-
-</style>
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -105,6 +16,7 @@ $result = $conn->query($sql);
 ?>
 
 <link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/borrow_history.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">

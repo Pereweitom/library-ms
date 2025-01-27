@@ -1,91 +1,3 @@
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    section {
-        display: flex;
-        width: 90%;
-        align-items: center;
-        margin-top: 20px;
-        justify-content: center;
-
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    form {
-        width: 50%;
-        padding: 40px 20px;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    }
-
-    form>h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 20px;
-
-    }
-
-    label {
-        display: block;
-        font-size: 14px;
-        color: #555;
-        margin-bottom: 5px;
-    }
-
-    input,
-    select {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 15px;
-
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .password-toggle {
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
-
-    .password-toggle > .toggle-btn {
-        position: absolute;
-        right: 10px;
-        top: 40%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: #007bff;
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    .password-toggle .toggle-btn:hover {
-        text-decoration: underline;
-    }
-
-</style>
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -113,14 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/form.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
         <h2 class="logo">Tomere<span>Lib</span>.</h2>
         <nav class="menu">
             <a href="dashboard.php">Dashboard</a>
-            <a href="manage_users.php">Manage Users</a>
-            <a href="manage_books.php" class="active">Manage Books</a>
+            <a href="manage_users.php" class="active">Manage Users</a>
+            <a href="manage_books.php">Manage Books</a>
         </nav>
         <div class="sidebar-footer">
             <a href="../auth/logout.php"><img src="../assets/images/logout_icon.png" alt="logout" class="logout-icon"> <span>Logout</span></a>
@@ -150,7 +63,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
 </div>
-
-
 
 <script src="../assets/js/script.js"></script>

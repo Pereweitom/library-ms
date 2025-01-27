@@ -1,35 +1,3 @@
-<style>
-    /* General Styles */
-
-h3 {
-    margin-bottom: 10px;
-    color: #2c3e50;
-}
-
-td > a {
-    text-decoration: none;
-    color: white;
-    padding: 8px;
-}
-
-.btn-approve {
-    background-color: #E74C3C;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-right: 4px;
-}
-
-.btn-decline {
-    background-color:#098b04;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
-
-
-</style>
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -54,6 +22,7 @@ $result = $conn->query("SELECT requests.*, users.username, books.title
 ?>
 
 <link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/borrow_request.css">
 
 <div class="dashboard-container">
     <!-- Sidebar -->

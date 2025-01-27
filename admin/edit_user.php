@@ -1,69 +1,3 @@
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    section {
-        display: flex;
-        width: 90%;
-        align-items: center;
-        margin-top: 20px;
-        justify-content: center;
-
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    form {
-        width: 50%;
-        padding: 40px 20px;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    }
-
-    form>h2 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 20px;
-
-    }
-
-    label {
-        display: block;
-        font-size: 14px;
-        color: #555;
-        margin-bottom: 5px;
-    }
-
-    input,
-    select {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 15px;
-
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-</style>
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -92,7 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/form.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -108,13 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </aside>
 
     <main class="main-content">
-    <header class="header">
-            <h1> Dashboard - Welcome Librarian, <?= ucfirst($_SESSION['username']); ?></h1>
-            <div class="profile">
-                <img src="../assets/images/user_avatar.jpg" alt="User">
-                <span><?= ucfirst($_SESSION['username']); ?></span>
-            </div>
-        </header>
         <section>
             <form method="POST">
                 <h2>Edit User</h2>

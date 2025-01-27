@@ -1,70 +1,3 @@
-<style>
-    h3 {
-        margin-bottom: 10px;
-        color: #2c3e50;
-    }
-
-    /* Success and Error Messages */
-    .success {
-        color: #27ae60;
-        background-color: #ecf9f1;
-        border: 1px solid #27ae60;
-        padding: 10px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-    }
-
-    .error {
-        color: #e74c3c;
-        background-color: #fdecea;
-        border: 1px solid #e74c3c;
-        padding: 10px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-    }
-
-    /* Styled Table */
-    .styled-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    .styled-table th, .styled-table td {
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #ddd;
-    }
-
-    .styled-table th {
-        background-color: #3498db;
-        color: white;
-    }
-
-    .styled-table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    /* Button Styles */
-    .btn-request {
-        display: inline-block;
-        padding: 8px 16px;
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: bold;
-        transition: background-color 0.2s;
-    }
-
-    .btn-request:hover {
-        background-color: #2980b9;
-    }
-</style>
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -87,6 +20,7 @@ $result = $conn->query("SELECT * FROM books WHERE status = 'available'");
 ?>
 
 <link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/browse_books.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">

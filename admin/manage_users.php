@@ -1,105 +1,3 @@
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* Table Section */
-    .manage-users-section {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .manage-users-section h3 {
-        margin-bottom: 20px;
-        font-size: 18px;
-        color: #333;
-    }
-
-    .add-user-btn {
-        display: inline-block;
-        margin-bottom: 20px;
-        background-color: #468fd2;
-        color: white;
-        text-decoration: none;
-        padding: 8px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-
-    .add-user-btn:hover {
-        background-color: #3169a3;
-    }
-
-    .table-wrapper {
-        overflow-x: auto;
-    }
-
-    .styled-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
-
-    .styled-table thead {
-        background-color: #468fd2;
-        color: white;
-    }
-
-    .styled-table th,
-    .styled-table td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .styled-table th {
-        font-weight: bold;
-    }
-
-    .styled-table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .action-link {
-        text-decoration: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        margin-right: 5px;
-    }
-
-    .edit-link {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .edit-link:hover {
-        background-color: #218838;
-    }
-
-    .delete-link {
-        background-color: #dc3545;
-        color: white;
-    }
-
-    .delete-link:hover {
-        background-color: #c82333;
-    }
-
-    footer {
-        text-align: center;
-        color: white;
-        border-radius: 10px;
-        padding: 10px;
-        margin-top: 5px;
-        background-color: #2980B9;
-    }
-</style>
-
-
 <?php
 require '../config/database.php';
 require '../includes/session.php';
@@ -114,6 +12,7 @@ $sql = "SELECT user_id, username, full_name, email, role, created_at FROM users"
 $result = $conn->query($sql);
 ?>
 <link rel="stylesheet" href="../assets/css/dashboard.css">
+<link rel="stylesheet" href="../assets/css/manage.css">
 <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
